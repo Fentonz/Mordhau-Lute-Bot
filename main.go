@@ -52,15 +52,10 @@ func arrays() [][]rune {
 }
 
 func main() {
-
-	kb, err := keybd_event.NewKeyBonding()
-	if err != nil {
-		panic(err)
-	}
 	values := arrays()
 	var play string
 
-	for i := 1; i < 29; i++ {
+	for i := 1; i < 85; i++ {
 		if values[0][i] == 45 && values[1][i] == 45 && values[2][i] == 45 && values[3][i] == 45 && values[4][i] == 45 && values[5][i] == 45 {
 			play = play + `-`
 		} else { //ir jāspēlē kāda nots
@@ -81,55 +76,74 @@ func main() {
 				play = play + `@`
 			}
 		}
-		fmt.Println(`Curr: `, play)
 	}
 	fmt.Println(`PLAY: `, play)
-
-	time.Sleep(3 * time.Second)
+	time.Sleep(5 * time.Second)
 	for _, r := range play {
+		kb, err := keybd_event.NewKeyBonding()
+		if err != nil {
+			panic(err)
+		}
 		c := string(r)
 		switch c {
 		case `-`:
+			time.Sleep(350 * time.Millisecond)
+		case `0`:
 			kb.SetKeys(keybd_event.VK_J)
 			err = kb.Launching()
 			if err != nil {
 				panic(err)
 			}
+			kb.SetKeys(keybd_event.VK_E, keybd_event.VK_Q, keybd_event.VK_TAB, keybd_event.VK_SPACE, keybd_event.VK_1, keybd_event.VK_0, keybd_event.VK_ENTER)
 
-			kb.SetKeys(keybd_event.VK_SP2)
 			time.Sleep(150 * time.Millisecond)
 			err = kb.Launching()
 			if err != nil {
 				panic(err)
 			}
-		case `0`:
-			kb.SetKeys(keybd_event.VK_0)
-			time.Sleep(150 * time.Millisecond)
-			err = kb.Launching()
-			if err != nil {
-				panic(err)
-			}
+			time.Sleep(50 * time.Millisecond)
 		case `1`:
-			kb.SetKeys(keybd_event.VK_1)
+			kb.SetKeys(keybd_event.VK_J)
+			err = kb.Launching()
+			if err != nil {
+				panic(err)
+			}
+			kb.SetKeys(keybd_event.VK_E, keybd_event.VK_Q, keybd_event.VK_TAB, keybd_event.VK_SPACE, keybd_event.VK_1, keybd_event.VK_0, keybd_event.VK_ENTER)
+
 			time.Sleep(150 * time.Millisecond)
 			err = kb.Launching()
 			if err != nil {
 				panic(err)
 			}
+			time.Sleep(50 * time.Millisecond)
 		case `2`:
-			kb.SetKeys(keybd_event.VK_2)
+			kb.SetKeys(keybd_event.VK_J)
+			err = kb.Launching()
+			if err != nil {
+				panic(err)
+			}
+			kb.SetKeys(keybd_event.VK_E, keybd_event.VK_Q, keybd_event.VK_TAB, keybd_event.VK_SPACE, keybd_event.VK_1, keybd_event.VK_3, keybd_event.VK_ENTER)
+
 			time.Sleep(150 * time.Millisecond)
 			err = kb.Launching()
 			if err != nil {
 				panic(err)
 			}
+			time.Sleep(50 * time.Millisecond)
 		case `3`:
-			kb.SetKeys(keybd_event.VK_3)
+			kb.SetKeys(keybd_event.VK_J)
+			err = kb.Launching()
+			if err != nil {
+				panic(err)
+			}
+			kb.SetKeys(keybd_event.VK_E, keybd_event.VK_Q, keybd_event.VK_TAB, keybd_event.VK_SPACE, keybd_event.VK_1, keybd_event.VK_6, keybd_event.VK_ENTER)
+
 			time.Sleep(150 * time.Millisecond)
 			err = kb.Launching()
 			if err != nil {
 				panic(err)
 			}
+			time.Sleep(50 * time.Millisecond)
 		case `4`:
 			kb.SetKeys(keybd_event.VK_4)
 			time.Sleep(150 * time.Millisecond)
@@ -152,6 +166,7 @@ func main() {
 				panic(err)
 			}
 		default:
+			fmt.Println(`ERRORS`)
 			kb.SetKeys(keybd_event.VK_W)
 			time.Sleep(150 * time.Millisecond)
 			err = kb.Launching()
